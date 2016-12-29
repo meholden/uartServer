@@ -24,6 +24,13 @@ void handleRoot() {
 
 }
 
+void handleRoot2() {
+  server.send(200, "text/html", serbuf);
+  String lala="this is the bitter end";
+  server.sendContent(lala);
+  Serial.println("sent2");
+}
+
 void handleNotFound(){
   digitalWrite(led, 1);
   String message = "File Not Found\n\n";
@@ -68,7 +75,7 @@ void setup(void){
     Serial.println("MDNS responder started");
   }
 
-  server.on("/", handleRoot);
+  server.on("/", handleRoot2);
 
   server.on("/inline", [](){
     server.send(200, "text/plain", "this works as well");
